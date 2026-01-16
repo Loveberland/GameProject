@@ -7,5 +7,5 @@ Prerequisites: You must have make and a Java compiler (JDK) installed and added 
         - make clean — Removes build artifacts (.class files or binaries).
 
                 Note: This program is designed for Windows.
-        (Optional) Don't have make file
+        (Optional) Don't have make
         - javac src/*.java && java src/Main.java
