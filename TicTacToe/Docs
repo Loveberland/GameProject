@@ -1,0 +1,11 @@
+Prerequisites: You must have make and a Java compiler (JDK) installed and added to your system PATH.
+
+        - make — Compiles the Java source code.
+        
+        - make run — Launches the application.
+
+        - make clean — Removes build artifacts (.class files or binaries).
+
+                Note: This program is designed for Windows.
+        (Optional) Don't have make file
+        - javac src/*.java && java src/Main.java
