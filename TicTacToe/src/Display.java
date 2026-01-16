@@ -1,15 +1,17 @@
 import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.*;
 
 public class Display extends Table {
         JFrame mainFrame;
+        JButton btnNewGame;
 
         public Display() {
                 initializeMainFrame();
                 tutorialPopup();
+        }
+
+        public Display(int number) {
+                initializeMainFrame();
         }
 
         public void initializeMainFrame() {
@@ -21,7 +23,7 @@ public class Display extends Table {
                 JPanel topPanel = new JPanel();
                 topPanel.setBorder(BorderFactory.createEmptyBorder(20, 0, 20, 0));
 
-                JButton btnNewGame = new JButton("New Game");
+                btnNewGame = new JButton("New Game");
                 btnNewGame.setFont(new Font("Arial", Font.PLAIN, 24));
                 btnNewGame.setFocusable(true);
                 btnNewGame.setPreferredSize(new Dimension(200, 40));
@@ -62,7 +64,10 @@ public class Display extends Table {
                 JButton btnUnderstand = new JButton("Understand");
                 btnUnderstand.setFont(new Font("Arial", Font.PLAIN, 30));
                 btnUnderstand.setFocusable(false);
-                btnUnderstand.addActionListener(e -> popup.dispose());
+                btnUnderstand.addActionListener(e -> {
+                        popup.dispose();
+                        new Process(super.btnBoard, btnNewGame);
+                });
 
                 JPanel btnPanel = new JPanel();
                 btnPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 50, 0));
