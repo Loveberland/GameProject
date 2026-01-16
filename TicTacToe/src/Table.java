@@ -1,7 +1,5 @@
-public class Table {
-        public int table[][] = {{0, 0, 0}, {0, 0, 0}, {0, 0, 0}};
+import javax.swing.JButton;
 
-        public boolean isWin() {
-                return false;
-        }
+public class Table {
+        public JButton[] btnBoard = new JButton[9];
 }

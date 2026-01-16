@@ -1,78 +1,76 @@
 import javax.swing.*;
+import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.event.*;
 
-public class Display {
-        private JFrame mainFrame;
-        private JButton[] btn = new JButton[9]; 
-        private JButton btnNewstart;
-        private JPanel topPanel, boardPanel;
+public class Display extends Table {
+        JFrame mainFrame;
 
         public Display() {
-                initializeUI();
-                SwingUtilities.invokeLater(this::showTutorial);
+                initializeMainFrame();
+                tutorialPopup();
         }
 
-        public void initializeUI() {
+        public void initializeMainFrame() {
                 mainFrame = new JFrame("Tic-Tac-Toe");
                 mainFrame.setSize(1000, 1000);
                 mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		mainFrame.setLayout(new BorderLayout(10, 10));
+                mainFrame.setLayout(new BorderLayout());
 
-                topPanel = new JPanel();
-                btnNewstart = new JButton("New Game");
-                btnNewstart.setFocusable(false);
-                topPanel.add(btnNewstart);
+                JPanel topPanel = new JPanel();
+                topPanel.setBorder(BorderFactory.createEmptyBorder(20, 0, 20, 0));
+
+                JButton btnNewGame = new JButton("New Game");
+                btnNewGame.setFont(new Font("Arial", Font.PLAIN, 24));
+                btnNewGame.setFocusable(true);
+                btnNewGame.setPreferredSize(new Dimension(200, 40));
+
+                topPanel.add(btnNewGame);
                 mainFrame.add(topPanel, BorderLayout.NORTH);
 
-                boardPanel = new JPanel();
-                boardPanel.setLayout(new GridLayout(3, 3, 15, 15));
-                boardPanel.setBorder(new EmptyBorder(20, 20, 20, 20));
+                JPanel boardPanel = new JPanel();
+                boardPanel.setLayout(new GridLayout(3, 3, 50, 50));
+                boardPanel.setBorder(BorderFactory.createEmptyBorder(0, 100, 100, 100));
                 for (int i = 0; i < 9; i++) {
-                        btn[i] = new JButton();
-                        btn[i].setBackground(new Color(192, 192, 192, 30));
-                        btn[i].setFocusable(false);
-                        boardPanel.add(btn[i]);
+                        super.btnBoard[i] = new JButton();
+                        super.btnBoard[i].setBackground(new Color(230, 230, 230));
+                        super.btnBoard[i].setFocusable(false);
+                        boardPanel.add(btnBoard[i]);
                 }
+
                 mainFrame.add(boardPanel, BorderLayout.CENTER);
 
-                mainFrame.setLocationRelativeTo(null);
                 mainFrame.setVisible(true);
         }
 
-        public void showTutorial() {
-                JDialog dialog = new JDialog(mainFrame, "", true);
-                dialog.setLayout(new BorderLayout());
-                dialog.setSize(500, 600);
-
-                JPanel tutorialPopup = new JPanel();
-                tutorialPopup.setLayout(new BorderLayout(10, 10));
-                tutorialPopup.setBorder(new EmptyBorder(20, 20, 20, 20));
-                tutorialPopup.setBackground(Color.WHITE);
-                String message = "<html><center>Decide who will<br>" +
+        public void tutorialPopup() {
+                JDialog popup = new JDialog(mainFrame, "Tutorial", true);
+                popup.setSize(500, 600);
+                popup.setLayout(new BorderLayout());
+                
+                String msg = "<html><center>Decide who will<br>" +
                         "play as X and<br>" +
                         "who will play as<br>" +
                         "O. The player<br>" +
                         "with X takes the<br>" +
                         "first turn.</center></html>";
-                JLabel txtLabel = new JLabel(message, SwingConstants.CENTER);
-                txtLabel.setFont(new Font("Arial", Font.PLAIN, 50));
-                tutorialPopup.add(txtLabel, BorderLayout.CENTER);
+                JLabel txt = new JLabel(msg, SwingConstants.CENTER);
+                txt.setFont(new Font("Arial", Font.PLAIN, 50));
+                popup.add(txt, BorderLayout.CENTER);
 
-                JButton btnUnderstand = new JButton("understand");
-                btnUnderstand.setFont(new Font("Arial", Font.PLAIN, 14));
+                JButton btnUnderstand = new JButton("Understand");
+                btnUnderstand.setFont(new Font("Arial", Font.PLAIN, 30));
                 btnUnderstand.setFocusable(false);
-                btnUnderstand.addActionListener(e -> dialog.dispose());
+                btnUnderstand.addActionListener(e -> popup.dispose());
 
                 JPanel btnPanel = new JPanel();
-                btnPanel.setBackground(new Color(192, 192, 192, 30));
+                btnPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 50, 0));
                 btnPanel.add(btnUnderstand);
-                tutorialPopup.add(btnPanel, BorderLayout.SOUTH);
 
-                tutorialPopup.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-                
-                dialog.add(tutorialPopup);
-                dialog.setLocationRelativeTo(mainFrame);
-                dialog.setVisible(true);
+                popup.add(btnPanel, BorderLayout.SOUTH);
+                popup.setLocationRelativeTo(mainFrame);
+
+                popup.setVisible(true);
         }
 }
