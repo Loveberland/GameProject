@@ -8,4 +8,4 @@ Prerequisites: You must have make and a Java compiler (JDK) installed and added 
 
                 Note: This program is designed for Windows.
         (Optional) Don't have make file
-        - javac src/*.java && java src/Main
+        - javac src/*.java && java src/Main.java
