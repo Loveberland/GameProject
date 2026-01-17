@@ -19,6 +19,7 @@ public class Display extends Table {
                 mainFrame.setSize(1000, 1000);
                 mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 mainFrame.setLayout(new BorderLayout());
+                mainFrame.setLocationRelativeTo(null);
 
                 JPanel topPanel = new JPanel();
                 topPanel.setBorder(BorderFactory.createEmptyBorder(20, 0, 20, 0));
